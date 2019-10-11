@@ -1,13 +1,15 @@
 version: '2'
 services:
   api:
-    build: .
+    image: iagoguimaraes/dockerapp
+    # build: .
     ports:
       - "3000:3000"
     links:
       - mysql
     depends_on:
       - mysql
+    restart: unless-stopped 
 
   mysql:
     image: mysql
