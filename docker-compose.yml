@@ -1,0 +1,21 @@
+version: '2'
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mysql
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    ports: 
+      - "3306:3306"
+      - "33060:33060"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    command: --default-authentication-plugin=mysql_native_password
+    
